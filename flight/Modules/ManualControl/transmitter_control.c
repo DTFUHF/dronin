@@ -382,6 +382,12 @@ int32_t transmitter_control_update()
 			applyDeadband(&cmd.Yaw, settings.Deadband);
 		}
 
+		// Apply Camera Angle Tilt Subsystem after deadband
+		if (settings.CameraAngleTilt) {
+			cmd.Roll = (cosf((M_PI / 180) * settings.CameraAngleTilt) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + (sinf((M_PI / 180) * settings.CameraAngleTilt) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
+			cmd.Yaw = (-1 * sinf((M_PI / 180) * settings.CameraAngleTilt) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + ((M_PI / 180) * cosf(settings.CameraAngleTilt) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
+		}
+		
 		if(cmd.Channel[MANUALCONTROLSETTINGS_CHANNELGROUPS_COLLECTIVE] != (uint16_t) PIOS_RCVR_INVALID &&
 		   cmd.Channel[MANUALCONTROLSETTINGS_CHANNELGROUPS_COLLECTIVE] != (uint16_t) PIOS_RCVR_NODRIVER &&
 		   cmd.Channel[MANUALCONTROLSETTINGS_CHANNELGROUPS_COLLECTIVE] != (uint16_t) PIOS_RCVR_TIMEOUT) {
