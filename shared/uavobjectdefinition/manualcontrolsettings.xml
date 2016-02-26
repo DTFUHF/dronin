@@ -102,8 +102,6 @@
 		</field>
 
 		<field name="Deadband" units="%" type="float" elements="1" defaultvalue="0"/>
-		
-		<field name="CameraAngleTilt" units="°" type="float" elements="1" defaultvalue="0"/>
 
 		<field name="Arming" units="" type="enum" elements="1" defaultvalue="Always Disarmed">
 			<options>
