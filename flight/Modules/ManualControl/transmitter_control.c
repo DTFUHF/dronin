@@ -386,8 +386,8 @@ int32_t transmitter_control_update()
 		float camera_tilt_angle;
 		StabilizationSettingsCameraTiltGet(&camera_tilt_angle);
 		if (camera_tilt_angle) {
-			cmd.Roll = (cosf((float)(M_PI / 180.0) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + (sinf((float)(M_PI / 180) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
-			cmd.Yaw = (-1 * sinf((float)(M_PI / 180) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + ((float)(M_PI / 180) * cosf(camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
+			cmd.Roll = (cosf((float)(M_PI / 180.0) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + (sinf((float)(M_PI / 180.0) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
+			cmd.Yaw = (-1 * sinf((float)(M_PI / 180.0) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_ROLL]) + ((cosf(float)(M_PI / 180.0) * camera_tilt_angle) * scaledChannel[MANUALCONTROLSETTINGS_CHANNELGROUPS_YAW]);
 		}
 		
 		if(cmd.Channel[MANUALCONTROLSETTINGS_CHANNELGROUPS_COLLECTIVE] != (uint16_t) PIOS_RCVR_INVALID &&
